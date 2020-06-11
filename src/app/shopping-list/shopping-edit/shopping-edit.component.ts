@@ -1,5 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
-import {Ingredient} from '../../shared/ingredient.model';
+/* import { 
+  Component, 
+  OnInit, 
+  ElementRef, 
+  ViewChild} from '@angular/core';
+
+  import {Ingredient} from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
@@ -9,19 +14,60 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingEditComponent implements OnInit {
 
-  @ViewChild('nameInput') nameInputeRef: ElementRef;
-  @ViewChild('amountInput') amountInputeRef: ElementRef;
+  @ViewChild('nameInput', { static: false }) nameInputeRef: ElementRef;
+  @ViewChild('amountInput', { static: false }) amountInputeRef: ElementRef;
   
 
   constructor(private slService: ShoppingListService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   onAddItem(){
     const ingName = this.nameInputeRef.nativeElement.value;
     const ingAmount = this.amountInputeRef.nativeElement.value;
-    const newIngredient = new Ingredient(ingName,ingAmount);
-   this.slService.addIngredients(newIngredient);
+    const newIngredient = new Ingredient(ingName , ingAmount);
+    console.log("newIngredient" + newIngredient);
+    
+    this.slService.addIngredient(newIngredient);
+
   }
+}
+ */
+
+
+
+
+
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
+
+import { Ingredient } from '../../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list.service';
+
+@Component({
+  selector: 'app-shopping-edit',
+  templateUrl: './shopping-edit.component.html',
+  styleUrls: ['./shopping-edit.component.css']
+})
+export class ShoppingEditComponent implements OnInit {
+  @ViewChild('nameInput', { static: false }) nameInputRef: ElementRef;
+  @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
+
+  constructor(private slService: ShoppingListService) { }
+
+  ngOnInit() {
+  }
+
+  onAddItem() {
+    const ingName = this.nameInputRef.nativeElement.value;
+    const ingAmount = this.amountInputRef.nativeElement.value;
+    const newIngredient = new Ingredient(ingName, ingAmount);
+    this.slService.addIngredient(newIngredient);
+  }
+
 }
